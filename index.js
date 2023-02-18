@@ -17,11 +17,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         const fresherJobCollection = client.db('ItJobPortal').collection('fresherJob');
+        const experienceJobCollection = client.db('ItJobPortal').collection('experienceJob');
 
         app.get('/fresherJob', async (req, res) => {
             const query = {};
             const result = await fresherJobCollection.find(query).toArray();
             res.send(result)
+        })
+
+        app.get('/experienceJob', async (req, res) => {
+            const query = {};
+            const result = await experienceJobCollection.find(query).toArray();
+            res.send(result);
         })
     }
     finally {
